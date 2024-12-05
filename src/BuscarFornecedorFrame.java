@@ -5,6 +5,7 @@ import javax.swing.JEditorPane;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.JScrollPane;
+import javax.swing.JTextArea;
 import javax.swing.JTextField;
 
 public class BuscarFornecedorFrame extends JFrame {
@@ -20,12 +21,16 @@ public class BuscarFornecedorFrame extends JFrame {
         textArea.setContentType("text/html");
         JScrollPane scrollPane = new JScrollPane(textArea);
         JButton buscarButton = new JButton("Buscar");
+        JTextArea textArea2 = new JTextArea();
 
         buscarButton.addActionListener(e -> {
             String nome = nomeField.getText().toLowerCase();
             boolean encontrado = false;
             StringBuilder result = new StringBuilder("<html><body>");
 
+            textArea2.append(String.format("%-20s %-20s %-20s %-20s\n",
+            "Nome", "Marca", "Número celular", "Fábricas"));
+            textArea2.append("=".repeat(90) + "\n");
             for (Fornecedor fornecedor : Main.fornecedores) {
                 if (fornecedor.getNome().toLowerCase().contains(nome)) {
                     result.append("<p>").append(fornecedor.toString()).append("</p>\n");

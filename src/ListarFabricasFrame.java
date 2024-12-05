@@ -1,8 +1,9 @@
 import java.awt.BorderLayout;
+import java.awt.Font;
+
 import javax.swing.JFrame;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
-import java.awt.*;
 
 public class ListarFabricasFrame extends JFrame {
     public ListarFabricasFrame() {
@@ -17,13 +18,13 @@ public class ListarFabricasFrame extends JFrame {
         JScrollPane scrollPane = new JScrollPane(textArea);
 
         if (Main.fabricas.isEmpty()) {
-            textArea.setText("O estoque está vazio.");
+            textArea.setText("Não existem fábricas.");
         } else {
             textArea.append(String.format("%-30s %-30s %-25s\n",
                     "Nome", "Marca", "Produtos"));
-            textArea.append("=".repeat(90) + "\n"); // Linha separadora
+            textArea.append("=".repeat(90) + "\n");
             for (Fabrica fabrica : Main.fabricas) {
-                textArea.append(String.format("%-15s %-20s %-15s %-15s %-10d R$ %-10.2f\n",
+                textArea.append(String.format("%-30s %-30s %-25s\n",
                         fabrica.getNome(),
                         fabrica.getMarca(),
                         fabrica.getProdutos()));

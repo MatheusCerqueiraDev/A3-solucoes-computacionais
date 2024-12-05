@@ -4,6 +4,7 @@ import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
+
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -32,10 +33,10 @@ public class Main extends JFrame {
         fabricas.add(fabrica3);
         fabricas.add(fabrica4);
 
-        Fornecedor fornecedor1 = new Fornecedor("Rodrigo Marinho", "Pituba - Salvador","71 99192-6666");
-        Fornecedor fornecedor2 = new Fornecedor("Eduardo Ribeiro", "Caminho das Arvores - Salvador", "71 99192-7777", fabrica2);
-        Fornecedor fornecedor3 = new Fornecedor("Matheus Cerqueira", "Ondina - Salvador", "71 99192-8888", fabrica3);
-        Fornecedor fornecedor4 = new Fornecedor("Carlos Helano", "Vila Olimpia - São Paulo", "71 99192-9999", fabrica4);
+        Fornecedor fornecedor1 = new Fornecedor("Rodrigo Marinho", "71 99192-6666","Mercedes-Benz");
+        Fornecedor fornecedor2 = new Fornecedor("Eduardo Ribeiro", "71 99192-6666", "Ford", fabrica4);
+        Fornecedor fornecedor3 = new Fornecedor("Matheus Cerqueira", "71 99192-6666", "Audi", fabrica3);
+        Fornecedor fornecedor4 = new Fornecedor("Carlos Helano", "71 99192-6666", "Ford", fabrica2);
 
         fornecedores.add(fornecedor1);
         fornecedores.add(fornecedor2);
@@ -78,7 +79,7 @@ public class Main extends JFrame {
         JButton listarFornecedoresButton = new JButton("Listar Fornecedores");
         JButton deletarFornecedoresButton = new JButton("Deletar Fornecedores");
         JButton alterarFornecedoresButton = new JButton("Alterar Fornecedores");
-        JButton buscarFornecedoresButton = new JButton("Buscar Fabricas");
+        JButton buscarFornecedoresButton = new JButton("Buscar Fornecedores");
 
         // Adicionando botões ao sidebar
         sidebar.add(btnProducts);
@@ -148,7 +149,7 @@ public class Main extends JFrame {
                 } else if (sourceButton == deletarFabricasButton) {
                     targetFrame = new DeletarFabricaFrame();
                 } else if (sourceButton == alterarFabricasButton) {
-                    targetFrame = new AlterarProdutoFrame();
+                    targetFrame = new AlterarFabricaFrame();
                 } else if (sourceButton == buscarFabricasButton) {
                     targetFrame = new BuscarFabricaFrame();
                 }

@@ -1,7 +1,9 @@
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+
 import javax.swing.JButton;
+import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
@@ -20,7 +22,7 @@ public class CriarFornecedorFrame extends JFrame {
         JTextField marcaField = new JTextField();
         JLabel numeroLabel = new JLabel("Número celular:");
         JLabel fabricaLabel = new JLabel("Fabrica:");
-        JTextField fabricaField = new JTextField();
+        JComboBox<Fabrica> fabricaComboBox = new JComboBox<>(Main.fabricas.toArray(new Fabrica[0]));
         
         JTextField numeroField = new JTextField();
         JButton criarButton = new JButton("Criar");
@@ -31,24 +33,12 @@ public class CriarFornecedorFrame extends JFrame {
                 String nome = nomeField.getText();
                 String marca = marcaField.getText();
                 String numero = numeroField.getText();
-                String fabrica = fabricaField.getText();
-
-                Fabrica fabrica2 = Main.fabricas.stream()
-                .filter(f -> f.getNome().equals(fabrica))
-                .findFirst()
-                .orElse(null);
-
-                if(fabrica == null) {
-                    JOptionPane.showMessageDialog(null, "Fabrica não encontrada.");
-                    return;
-                }
-                
+                Fabrica fabrica = (Fabrica) fabricaComboBox.getSelectedItem();
                
-                Fornecedor fornecedor = new Fornecedor(nome, numero, marca, fabrica2 );
+                Fornecedor fornecedor = new Fornecedor(nome, numero, marca, fabrica);
                 Main.fornecedores.add(fornecedor);
                 JOptionPane.showMessageDialog(null, "Fornecedor criado com sucesso!");
                 dispose();
-                
             }
         });
 
@@ -60,6 +50,8 @@ public class CriarFornecedorFrame extends JFrame {
         add(marcaField);
         add(numeroLabel);
         add(numeroField);
+        add(fabricaLabel);
+        add(fabricaComboBox);
         add(new JLabel());
         add(criarButton);
 
