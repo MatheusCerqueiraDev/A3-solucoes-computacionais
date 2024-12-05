@@ -1,8 +1,15 @@
-import javax.swing.*;
-import java.awt.*;
+import java.awt.BorderLayout;
+import java.awt.CardLayout;
+import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
+import javax.swing.BoxLayout;
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
 
 public class Main extends JFrame {
 
@@ -166,6 +173,7 @@ public class Main extends JFrame {
         factoriesPanel.add(alterarFabricasButton);
         factoriesPanel.add(buscarFabricasButton);
 
+        System.out.println("fornecedores: " + fornecedores);
         // Painel de fornecedores
         ActionListener fornecedorCheckListener = e -> {
             JButton sourceButton = (JButton) e.getSource();
@@ -178,14 +186,14 @@ public class Main extends JFrame {
             if (fornecedores.isEmpty()) {
                 JOptionPane.showMessageDialog(Main.this, "Não existem fornecedores! Por favor crie um.");
             } else {
-                if (sourceButton == listarFabricasButton) {
-                    targetFrame = new ListarFabricasFrame();
-                } else if (sourceButton == deletarFabricasButton) {
-                    targetFrame = new DeletarFabricaFrame();
-                } else if (sourceButton == alterarFabricasButton) {
-                    targetFrame = new AlterarProdutoFrame();
-                } else if (sourceButton == buscarFabricasButton) {
-                    targetFrame = new BuscarFabricaFrame();
+                if (sourceButton == listarFornecedoresButton) {
+                    targetFrame = new ListarFornecedorFrame();
+                } else if (sourceButton == deletarFornecedoresButton) {
+                    targetFrame = new DeletarFornecedorFrame();
+                } else if (sourceButton == alterarFornecedoresButton) {
+                    targetFrame = new AlterarFornecedorFrame();
+                } else if (sourceButton == buscarFornecedoresButton) {
+                    targetFrame = new BuscarFornecedorFrame();
                 }
                 if (targetFrame != null) {
                     targetFrame.setVisible(true);
@@ -201,7 +209,7 @@ public class Main extends JFrame {
 
         JPanel suppliersPanel = new JPanel();
         suppliersPanel.add(new JLabel("Fornecedores"));
-        // suppliersPanel.add(new CriarFornecedorFrame());
+        suppliersPanel.add(criarFornecedoresButton);
         suppliersPanel.add(listarFornecedoresButton);
         suppliersPanel.add(deletarFornecedoresButton);
         suppliersPanel.add(alterarFornecedoresButton);

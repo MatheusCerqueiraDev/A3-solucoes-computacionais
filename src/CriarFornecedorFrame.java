@@ -1,7 +1,6 @@
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -20,6 +19,9 @@ public class CriarFornecedorFrame extends JFrame {
         JLabel marcaLabel = new JLabel("Marca:");
         JTextField marcaField = new JTextField();
         JLabel numeroLabel = new JLabel("Número celular:");
+        JLabel fabricaLabel = new JLabel("Fabrica:");
+        JTextField fabricaField = new JTextField();
+        
         JTextField numeroField = new JTextField();
         JButton criarButton = new JButton("Criar");
         
@@ -29,26 +31,29 @@ public class CriarFornecedorFrame extends JFrame {
                 String nome = nomeField.getText();
                 String marca = marcaField.getText();
                 String numero = numeroField.getText();
-                
-                // if (!nome.isBlank() || !descricao.isBlank() || !marca.isBlank() || !modelo.isBlank()) {
-                //     JOptionPane.showMessageDialog(CriarProdutoFrame.this, "Todos os campos devem ser preenchidos.");
-                // } else {
-                // String precoText = precoField.getText();
-                // if (!precoText.matches("\\d+(\\.\\d{1,2})?") && !precoText.matches("\\d+(,\\d{1,2})?")) {
-                //     JOptionPane.showMessageDialog(null, "Preço deve ser um número válido.");
-                // }
+                String fabrica = fabricaField.getText();
 
-                // if (!numeroField.getText().matches("\\d+") || Integer.parseInt(numeroField.getText()) <= 0) {
-                //     JOptionPane.showMessageDialog(null, "Ano deve ser um número inteiro positivo.");
-                // }
-                Fornecedor fornecedor = new Fornecedor(nome, numero, marca);
+                Fabrica fabrica2 = Main.fabricas.stream()
+                .filter(f -> f.getNome().equals(fabrica))
+                .findFirst()
+                .orElse(null);
+
+                if(fabrica == null) {
+                    JOptionPane.showMessageDialog(null, "Fabrica não encontrada.");
+                    return;
+                }
+                
+               
+                Fornecedor fornecedor = new Fornecedor(nome, numero, marca, fabrica2 );
                 Main.fornecedores.add(fornecedor);
                 JOptionPane.showMessageDialog(null, "Fornecedor criado com sucesso!");
                 dispose();
-                // }
+                
             }
         });
 
+        add(fabricaLabel);
+        add(numeroField);
         add(nomeLabel);
         add(nomeField);
         add(marcaLabel);
